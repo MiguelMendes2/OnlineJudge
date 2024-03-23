@@ -23,8 +23,7 @@ public class Problem100 {
     private static int MaxCycle(int min, int max) {
         int maxCycleCounter = 0;
         for(int i = min; i <= max; i++) {
-            int result = cycle(i);
-            maxCycleCounter = maxCycleCounter > result ? maxCycleCounter : result ;
+            maxCycleCounter = Math.max(maxCycleCounter, cycle(i));
         }
         return maxCycleCounter;
     }
@@ -33,7 +32,7 @@ public class Problem100 {
         if (n == 1)
             return 1;
         if (n % 2 == 0)
-            return 1 + cycle(n / 2) ;
+            return 1 + cycle(n / 2);
         return 1 + cycle(3 * n + 1);
     }
 
