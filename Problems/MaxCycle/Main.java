@@ -1,5 +1,6 @@
-package clubeProgramacao.Problems.MaxCycle;
+package Problems.MaxCycle;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -29,12 +30,15 @@ import java.util.Scanner;
  */
 public class Main {
 
+    private static HashMap<Long, Long> prev = new HashMap<>();
+
     /**
      * Read the input and call the solver
      */
     public static void Runner() {
         Scanner scn = new Scanner(System.in);
-        int first, second, max;
+        long first, second, max;
+
         while(scn.hasNext()) {
             first = scn.nextInt();
             second = scn.nextInt();
@@ -51,9 +55,9 @@ public class Main {
      * @param max the maximum number
      * @return the maximum cycle length between min and max
      */
-    private static int GetMaxCycle(int min, int max) {
-        int maxCycleCounter = 0;
-        for(int i = min; i <= max; i++) {
+    private static long GetMaxCycle(long min, long max) {
+        long maxCycleCounter = 0;
+        for(long i = min; i <= max; i++) {
             maxCycleCounter = Math.max(maxCycleCounter, cycle(i));
         }
         return maxCycleCounter;
@@ -65,12 +69,19 @@ public class Main {
      * @param n the number
      * @return the cycle length of n
      */
-    private static int cycle(int n) {
+    private static long cycle(long n) {
+        if (prev.containsKey(n))
+            return prev.get(n);
         if (n == 1)
             return 1;
-        if (n % 2 == 0)
-            return 1 + cycle(n / 2);
-        return 1 + cycle(3 * n + 1);
+        if (n % 2 == 0) {
+            long result =  1 + cycle(n / 2);
+            prev.put(n, result);
+            return result;
+        }
+        long result =  1 + cycle(3 * n + 1);
+        prev.put(n, result);
+        return result;
     }
 
     public static void main(String[] args) {
