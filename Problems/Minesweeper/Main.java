@@ -1,4 +1,4 @@
-package clubeProgramacao.Problems.Minesweeper;
+package Problems.Minesweeper;
 
 import java.io.BufferedReader;
 import java.io.IOException;

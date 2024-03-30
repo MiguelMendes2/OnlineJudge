@@ -89,6 +89,14 @@ public class Main {
         }
     }
 
+    /*
+     * Balance the stations and return the imbalance
+     *
+     * @param stations the stations
+     * @param numChambers the number of chambers
+     * @param sum the sum of the stations value
+     * @param strB the string builder
+     */
     public static void Solver(int[] stations, int numChambers, int sum, StringBuilder strB) {
         double avg =  ((double) sum) / numChambers, imbalance = 0;
         int setNum = 0;
